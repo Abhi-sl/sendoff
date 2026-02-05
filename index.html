@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 10 Send-Off 2026</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f5f5f5;text-align:center}
+header{background:#8b0000;color:white;padding:25px}
+button{padding:12px 20px;margin:10px;font-size:16px;border:none;border-radius:8px;cursor:pointer;background:#8b0000;color:white}
+button:hover{background:#a80000}
+.container{padding:20px}
+.card{background:white;margin:20px auto;padding:20px;border-radius:15px;max-width:500px;box-shadow:0 5px 15px rgba(0,0,0,0.15)}
+.nameBtn{display:block;margin:8px auto;padding:10px;border-radius:8px;background:#333;color:white;width:220px}
+.nameBtn:hover{background:#555}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+<h1>Christ School Thanadavapura</h1>
+<h2>?? Grade X Send-Off Invetation E-Card 2026 ??</h2>
+</header>
+
+<div class="container" id="home">
+<h2>Select Your Section</h2>
+<button onclick="showSection('A')">Class X A</button>
+<button onclick="showSection('B')">Class X B</button>
+</div>
+
+<div class="container hidden" id="sectionPage">
+<h2 id="sectionTitle"></h2>
+<div id="students"></div>
+<button onclick="goHome()">? Back</button>
+</div>
+
+<div class="container hidden" id="studentPage">
+<div class="card">
+<h2 id="studentName"></h2>
+<p>Wishing you success, happiness and a bright future. May your dreams take flight and your journey be amazing.</p>
+<hr>
+<h3>Invitation</h3>
+<p><b>Date:</b> 9 February 2026</p>
+<p><b>Venue:</b> ST. Charavara Auditorium</p>
+<p><b>Time:</b> 12:00 PM</p>
+<button onclick="goHome()">? Home</button>
+</div>
+</div>
+
+<script>
+// ?? Replace names below with real student names
+const sectionA = [
+"Student A1","Student A2","Student A3","Student A4","Student A5","Student A6","Student A7","Student A8","Student A9","Student A10",
+"Student A11","Student A12","Student A13","Student A14","Student A15","Student A16","Student A17","Student A18","Student A19","Student A20",
+"Student A21","Student A22","Student A23","Student A24","Student A25","Student A26","Student A27","Student A28","Student A29","Student A30",
+"Student A31","Student A32","Student A33","Student A34","Student A35","Student A36","Student A37","Student A38","Student A39","Student A40"
+];
+
+const sectionB = [
+"Student B1","Student B2","Student B3","Student B4","Student B5","Student B6","Student B7","Student B8","Student B9","Student B10",
+"Student B11","Student B12","Student B13","Student B14","Student B15","Student B16","Student B17","Student B18","Student B19","Student B20",
+"Student B21","Student B22","Student B23","Student B24","Student B25","Student B26","Student B27","Student B28","Student B29","Student B30",
+"Student B31","Student B32","Student B33","Student B34","Student B35","Student B36","Student B37","Student B38","Student B39","Student B40"
+];
+
+function showSection(section){
+ document.getElementById('home').classList.add('hidden');
+ document.getElementById('studentPage').classList.add('hidden');
+ document.getElementById('sectionPage').classList.remove('hidden');
+ document.getElementById('sectionTitle').innerText='Class 10 '+section;
+ const list = section==='A'?sectionA:sectionB;
+ const container=document.getElementById('students');
+ container.innerHTML='';
+ list.forEach(name=>{
+ let btn=document.createElement('button');
+ btn.className='nameBtn';
+ btn.innerText=name;
+ btn.onclick=()=>showStudent(name);
+ container.appendChild(btn);
+ });
+}
+
+function showStudent(name){
+ document.getElementById('sectionPage').classList.add('hidden');
+ document.getElementById('studentPage').classList.remove('hidden');
+ document.getElementById('studentName').innerText=name;
+}
+
+function goHome(){
+ document.getElementById('home').classList.remove('hidden');
+ document.getElementById('sectionPage').classList.add('hidden');
+ document.getElementById('studentPage').classList.add('hidden');
+}
+</script>
+</body>
+</html>
+
+
