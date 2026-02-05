@@ -4,78 +4,90 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Class 10 Send-Off 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 <style>
-body{
- font-family:'Georgia',serif;
- margin:0;
- background:linear-gradient(135deg,#f7e7ce,#fffaf0);
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins, sans-serif;background:#0b0b0b;color:white}
+
+/* HERO */
+.hero{
+ height:100vh;
+ background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.85)),url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1');
+ background-size:cover;
+ background-position:center;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
  text-align:center;
- color:#3b2f2f;
 }
-header{
- background:linear-gradient(135deg,#7a0c0c,#b22222);
- color:#fff;
- padding:35px 15px;
- box-shadow:0 6px 20px rgba(0,0,0,0.25);
+.hero h1{font-size:48px;letter-spacing:2px}
+.hero h2{margin-top:15px;color:#ff4d6d}
+.glow{
+ margin-top:30px;
+ padding:14px 28px;
+ border-radius:40px;
+ border:none;
+ background:linear-gradient(45deg,#ff004c,#ff7a00);
+ color:white;
+ font-size:18px;
+ cursor:pointer;
+ box-shadow:0 0 20px #ff004c;
 }
-header h1{margin:0;font-size:34px;letter-spacing:1px}
-header h2{margin-top:10px;font-weight:normal}
-button{
+.glow:hover{transform:scale(1.1)}
+
+.sectionSelect{display:none;padding:50px;text-align:center}
+.sectionSelect h2{margin-bottom:20px}
+.btn{
  padding:14px 26px;
- margin:12px;
- font-size:17px;
+ margin:10px;
  border:none;
  border-radius:30px;
- cursor:pointer;
- background:linear-gradient(135deg,#8b0000,#b22222);
- color:white;
- box-shadow:0 4px 10px rgba(0,0,0,0.3);
+ background:linear-gradient(45deg,#ff004c,#ff7a00);
+ color:white;font-size:18px;cursor:pointer
 }
-button:hover{transform:scale(1.05)}
-.container{padding:30px}
-.card{
- background:#fffaf0;
- margin:30px auto;
- padding:30px;
- border-radius:25px;
- max-width:520px;
- box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
+
+.studentList{display:none;padding:40px;text-align:center}
 .nameBtn{
- display:block;
- margin:10px auto;
- padding:12px;
- border-radius:25px;
- background:#3b2f2f;
- color:white;
- width:260px;
- font-size:16px;
+ display:block;margin:10px auto;padding:12px 20px;
+ width:260px;border:none;border-radius:30px;
+ background:#1f1f1f;color:white;font-size:16px;cursor:pointer
 }
-.nameBtn:hover{background:#5a3e3e}
-.hidden{display:none}
-hr{border:none;height:1px;background:#c9b28c;margin:20px 0}
+.nameBtn:hover{background:#333}
+
+.card{display:none;max-width:520px;margin:40px auto;background:#111;padding:30px;border-radius:25px;box-shadow:0 0 25px rgba(255,0,76,.4)}
+.card h2{color:#ff4d6d}
+.card hr{border:none;height:1px;background:#333;margin:20px 0}
+.back{margin-top:20px}
 </style>
 </head>
 <body>
-<header>
+
+<!-- HERO PAGE -->
+<div class="hero" id="home">
 <h1>Christ School Thanadavapura</h1>
 <h2>🎓 Class 10 Send-Off 2026 🎓</h2>
-</header>
-
-<div class="container" id="home">
-<h2>Select Your Section</h2>
-<button onclick="showSection('A')">Class 10 A</button>
-<button onclick="showSection('B')">Class 10 B</button>
+<button class="glow" onclick="openSections()">Enter Invitation</button>
 </div>
 
-<div class="container hidden" id="sectionPage">
+<!-- SECTION SELECT -->
+<div class="sectionSelect" id="sections">
+<h2>Select Your Section</h2>
+<button class="btn" onclick="showSection('A')">Class 10 A</button>
+<button class="btn" onclick="showSection('B')">Class 10 B</button>
+</div>
+
+<!-- STUDENT LIST -->
+<div class="studentList" id="studentsPage">
 <h2 id="sectionTitle"></h2>
 <div id="students"></div>
-<button onclick="goHome()">⬅ Back</button>
+<button class="btn" onclick="goHome()">Home</button>
 </div>
 
-<div class="container hidden" id="studentPage">
-<div class="card">
+<!-- STUDENT CARD -->
+<div class="card" id="studentCard">
 <h2 id="studentName"></h2>
 <p>Wishing you success, happiness and a bright future. May your dreams take flight and your journey be amazing.</p>
 <hr>
@@ -83,32 +95,23 @@ hr{border:none;height:1px;background:#c9b28c;margin:20px 0}
 <p><b>Date:</b> 9 February 2026</p>
 <p><b>Venue:</b> School Auditorium</p>
 <p><b>Time:</b> 10:00 AM</p>
-<button onclick="goHome()">⬅ Home</button>
-</div>
+<button class="btn back" onclick="goHome()">Home</button>
 </div>
 
 <script>
-// 👉 Replace names below with real student names
-const sectionA = [
-"Student A1","Student A2","Student A3","Student A4","Student A5","Student A6","Student A7","Student A8","Student A9","Student A10",
-"Student A11","Student A12","Student A13","Student A14","Student A15","Student A16","Student A17","Student A18","Student A19","Student A20",
-"Student A21","Student A22","Student A23","Student A24","Student A25","Student A26","Student A27","Student A28","Student A29","Student A30",
-"Student A31","Student A32","Student A33","Student A34","Student A35","Student A36","Student A37","Student A38","Student A39","Student A40"
-];
+const sectionA=["Student A1","Student A2","Student A3","Student A4","Student A5","Student A6","Student A7","Student A8","Student A9","Student A10"];
+const sectionB=["Student B1","Student B2","Student B3","Student B4","Student B5","Student B6","Student B7","Student B8","Student B9","Student B10"];
 
-const sectionB = [
-"Student B1","Student B2","Student B3","Student B4","Student B5","Student B6","Student B7","Student B8","Student B9","Student B10",
-"Student B11","Student B12","Student B13","Student B14","Student B15","Student B16","Student B17","Student B18","Student B19","Student B20",
-"Student B21","Student B22","Student B23","Student B24","Student B25","Student B26","Student B27","Student B28","Student B29","Student B30",
-"Student B31","Student B32","Student B33","Student B34","Student B35","Student B36","Student B37","Student B38","Student B39","Student B40"
-];
+function openSections(){
+ document.getElementById('home').style.display='none';
+ document.getElementById('sections').style.display='block';
+}
 
-function showSection(section){
- document.getElementById('home').classList.add('hidden');
- document.getElementById('studentPage').classList.add('hidden');
- document.getElementById('sectionPage').classList.remove('hidden');
- document.getElementById('sectionTitle').innerText='Class 10 '+section;
- const list = section==='A'?sectionA:sectionB;
+function showSection(sec){
+ document.getElementById('sections').style.display='none';
+ document.getElementById('studentsPage').style.display='block';
+ document.getElementById('sectionTitle').innerText='Class 10 '+sec;
+ const list=sec==='A'?sectionA:sectionB;
  const container=document.getElementById('students');
  container.innerHTML='';
  list.forEach(name=>{
@@ -121,16 +124,13 @@ function showSection(section){
 }
 
 function showStudent(name){
- document.getElementById('sectionPage').classList.add('hidden');
- document.getElementById('studentPage').classList.remove('hidden');
+ document.getElementById('studentsPage').style.display='none';
+ document.getElementById('studentCard').style.display='block';
  document.getElementById('studentName').innerText=name;
 }
 
-function goHome(){
- document.getElementById('home').classList.remove('hidden');
- document.getElementById('sectionPage').classList.add('hidden');
- document.getElementById('studentPage').classList.add('hidden');
-}
+function goHome(){location.reload();}
 </script>
+
 </body>
 </html>
